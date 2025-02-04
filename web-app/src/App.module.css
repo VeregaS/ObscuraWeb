@@ -1,9 +1,13 @@
-.version {
-  display: "flex";
-  justify-content: "center";
-  align-items: "center";
-  height: "100vh";
-  font-size: "24px";
-  color: red;
+body {
+  background-color: var(--theme-main);
 }
 
+.version {
+  margin-top: 10px;
+  margin-left: 10px;
+  color: var(--version-main);
+  height: 100vh;
+  font-family: montserrat;
+  font-weight: 600;
+  font-size: 12px;
+}
