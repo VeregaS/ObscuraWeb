@@ -7,6 +7,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Config(BaseSettings):
     BOT_TOKEN: SecretStr
     DSN_LINK: SecretStr
+    WEBAPP_LINK: str = 'https://web-1ye21p49b-veregas-projects.vercel.app'
         
     model_config = SettingsConfigDict(
         env_file=join(dirname(__file__), ".env"),

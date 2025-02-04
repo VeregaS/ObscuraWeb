@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./App.module.css"
 
 function App() {
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", fontSize: "24px" }}>
+    <div className={styles.version}>
       Добро пожаловать в Web App!
     </div>
   );
