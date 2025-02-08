@@ -1,13 +1,7 @@
-body {
-  background-color: var(--theme-main);
-}
-
-.version {
-  margin-top: 10px;
-  margin-left: 10px;
-  color: var(--version-main);
-  height: 100vh;
-  font-family: montserrat;
-  font-weight: 600;
-  font-size: 12px;
+.App {
+    background-color: var(--background-main);
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: auto;
+    scroll-behavior: smooth;
 }
