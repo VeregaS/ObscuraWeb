@@ -24,9 +24,9 @@ class Database:
             )
 
 
-    async def get_character(self, id: int) -> Optional[dict]:
+    async def get_character(self, id: str) -> Optional[dict]:
         async with self.pool.acquire() as conn:
-            return await conn.fetchrow("SELECT * FROM characters WHERE id = $1", id)
+            return await conn.fetchrow("SELECT * FROM characters WHERE formatted_id = $1", id)
         
     
     async def get_characters(self) -> Optional[dict]:
@@ -39,21 +39,28 @@ class Database:
             items = await self.get_items(id)
             items.append(item)
             await conn.execute(
-                "UPDATE characters SET inventory = $2 WHERE id = $1", id, items
+                "UPDATE characters SET inventory = $2 WHERE formatted_id = $1", id, items
             )
             
     
-    async def get_items(self, id: int) -> Optional[dict]:
+    async def get_items(self, id: str) -> Optional[dict]:
         async with self.pool.acquire() as conn:
-            return await conn.fetchrow("SELECT inventory FROM characters WHERE id = $1", id)
+            return await conn.fetchrow("SELECT inventory FROM characters WHERE formatted_id = $1", id)
     
     
-    async def change_hp(self, id: int, new_hp: int): 
+    async def change_hp(self, id: str, new_hp: int):
+        hp = await self.get_hp(id)
+        new_hp = hp + new_hp 
         async with self.pool.acquire() as conn:
             await conn.execute(
-                "UPDATE characters SET hp= $2 WHERE id = $1", id, new_hp
+                "UPDATE characters SET hp= $2 WHERE formatted_id = $1", id, new_hp
             )
 
+    
+    async def get_hp(self, id: str) -> int:
+        async with self.pool.acquire() as conn:
+            return await conn.fetchval("SELECT hp FROM characters WHERE formatted_id = $1", id)
+        
     
     async def load_character(self, data: list):
         name, hp, inventory = data
