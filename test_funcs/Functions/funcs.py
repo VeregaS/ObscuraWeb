@@ -8,14 +8,14 @@ async def create_character(db):
     print(f'\nПерсонаж по имени {name} создан!\n')
     
 
-
 async def show_characters(db):
-    print('\n\t Список персонажей\n')
+    ans = ""
+    ans += '\n\t Список персонажей\n'
     characters = await db.get_characters()
     for ch in characters:
-        print(f'{ch["formatted_id"]} - {ch["name"]}')
-    print('\n')
-    
+        ans += f'{ch["formatted_id"]} - {ch["name"]}'
+    ans += '\n'
+    return ans
 
 
 async def give_item(db):

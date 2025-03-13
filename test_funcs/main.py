@@ -14,10 +14,10 @@ async def main():
     
     except Exception as e:
         print("Critical error occurred while polling: %s", e)
-        
+    
     finally:
         await db.disconnect()
-        
+
 
 if __name__ == "__main__":
     try:
