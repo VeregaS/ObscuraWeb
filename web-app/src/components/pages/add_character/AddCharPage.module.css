@@ -7,21 +7,69 @@
     margin-left: 7vw;
     margin-right: 7vw;
     width: auto;
-    max-width: 420px;
+    max-width: 350px;
 }
 
 .title {
     font-family: montserrat;
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 600;
     color: var(--dark-main);
     margin-bottom: 1vh;
 }
 
-.addbutton {
+.buttons {
     font-family: montserrat;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--dark-main);
     padding: 1%;
+}
+
+.input_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1vh;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs > select,
+.inputs > input {
+    height: 20px;
+    margin-bottom: 4px;
+}
+
+.titles {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.input_tite {
+    font-family: montserrat;
+    color: var(--dark-main);
+    font-size: 16px;
+    height: 20px;
+    margin-bottom: 12px;
+}
+
+.buttons_container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.class, .family, .type, .name {
+    font-family: montserrat;
+    color: var(--dark-main);
+    font-weight: 500;
+    font-size: 16px;
+    padding: 3px;
+    box-sizing:content-box;
 }

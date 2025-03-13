@@ -15,7 +15,7 @@ function Characters() {
     }
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8000/api/show_characters")
+        axios.get("http://192.168.96.40:8000/api/show_characters")
             .then(response => setData(response.data.message))
             .catch(error => console.error("Ошибка:", error));
     }, []);
@@ -32,7 +32,7 @@ function Characters() {
             ) : (
                 <p>Загрузка...</p>
             )}
-            <button className={styles.addbutton} onClick={routeChange} >Добавить</button>
+            <button className={styles.buttons} onClick={routeChange} >Добавить</button>
         </div>
     );
 }
