@@ -1,10 +1,18 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./characters.module.css"
 
+
 function Characters() {
     const [data, setData] = useState([]);
+    
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+        let path = `/add-character-page`; 
+        navigate(path);
+    }
 
     useEffect(() => {
         axios.get("http://127.0.0.1:8000/api/show_characters")
@@ -24,6 +32,7 @@ function Characters() {
             ) : (
                 <p>Загрузка...</p>
             )}
+            <button className={styles.addbutton} onClick={routeChange} >Добавить</button>
         </div>
     );
 }
