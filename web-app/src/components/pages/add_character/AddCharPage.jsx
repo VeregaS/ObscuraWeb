@@ -26,7 +26,7 @@ function AddCharPage() {
       
     const handleSubmit = async () => {
         try {
-            const response = await axios.post("http://192.168.31.59:8000/api/add_character", formData);
+            const response = await axios.post("http://10.207.255.128:8000/api/add_character", formData);
             console.log("Успешно отправлено:", response.data);
             routeChange();
         } catch (error) {

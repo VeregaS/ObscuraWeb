@@ -7,10 +7,9 @@ async def show_characters(db):
     ans = []
     characters = await db.get_characters()
     for ch in characters:
-        ans.append(f'{ch["formatted_id"]} - {ch["name"]}') 
+        ans.append(f'{ch["name"]} [{ch["formatted_id"]}]') 
     print(ans)
     return {"message": ans}
-
 
 async def add_character(data, db):
     name, class_, family, type = data.name, data.class_, data.family, data.type
