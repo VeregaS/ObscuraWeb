@@ -28,7 +28,6 @@
 
 .input_container {
     display: flex;
-    justify-content: center;
     margin-bottom: 1vh;
     width: 100%;
     justify-content: space-between;
@@ -59,6 +58,35 @@
     margin-bottom: 12px;
 }
 
+.stats {
+    display: flex;
+    font-family: montserrat;
+    color: var(--dark-main);
+    font-weight: 500;
+    gap: 3vw;
+    margin-bottom: 4vh;
+    margin-top: 2vh;;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.stats_title {
+    font-size: 16px;
+    margin-bottom: 2vh;
+}
+
+.stat_title {
+    font-size: 14px;
+}
+
+.num_stat {
+    font-family: montserrat;
+    color: var(--dark-main);
+    font-weight: 500;
+    margin-bottom: 0.5vh;
+    text-align: center;
+    width: 40%;
+}
 .buttons_container {
     display: flex;
     width: 100%;

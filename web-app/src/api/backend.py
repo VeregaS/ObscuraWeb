@@ -1,7 +1,7 @@
 import uvicorn
 import asyncio
+import json
 from fastapi import FastAPI
-from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from functions import show_characters, connect_to_db, disconnect_db, add_character
 
@@ -15,13 +15,6 @@ app.add_middleware(
 )
 
 
-class NewCharData(BaseModel):
-    name: str
-    class_: str
-    family: str
-    type: str
-
-
 @app.get("/api/show_characters")
 async def call_show_characters():
     db = await connect_to_db()
@@ -32,12 +25,20 @@ async def call_show_characters():
         
 
 @app.post("/api/add_character")
-async def call_show_characters(data: NewCharData):
+async def call_add_characters(data: dict):
     db = await connect_to_db()
     try:
-        return await add_character(data, db)
+        name = data['name']
+        class_ = data['class_']
+        family = data['family']
+        type = data['type']
+        attributes = data['attributes']
+        
+        send_data = [name, class_, family, type, attributes]
+        return await add_character(send_data, db)
     finally:
         await disconnect_db(db)
+
 
 
 @app.get("/api/test")

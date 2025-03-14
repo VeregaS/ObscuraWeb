@@ -1,4 +1,5 @@
 import asyncio
+import json
 from config_reader import config
 from database import Database
 
@@ -11,10 +12,14 @@ async def show_characters(db):
     print(ans)
     return {"message": ans}
 
+
 async def add_character(data, db):
-    name, class_, family, type = data.name, data.class_, data.family, data.type
     try:
-        await db.add_character(name, class_, family, type)
+        name, class_, family, type, attributes = data
+        attributes = json.dumps(attributes)
+        print(f"Добавляем персонажа: {name}, {class_}, {family}, {type}, {attributes}")
+        
+        await db.add_character(name, class_, family, type, attributes)
         return {"message": f"success {data}"}
     except Exception as e:
         return {"message": f"unluck: {data} {e}"}
