@@ -17,11 +17,11 @@ class Database:
             await self.pool.close()
 
 
-    async def add_character(self, name: str):
+    async def add_character(self, name: str, class_: str, family: str, type: str):
         async with self.pool.acquire() as conn:
             await conn.execute(
-                "INSERT INTO characters (name) VALUES ($1) ON CONFLICT DO NOTHING",
-                name
+                "INSERT INTO characters (name, class, family, type) VALUES ($1, $2, $3, $4) ON CONFLICT DO NOTHING",
+                name, class_, family, type
             )
 
 

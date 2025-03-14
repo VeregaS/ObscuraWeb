@@ -1,13 +1,38 @@
-import React from "react";
+import { React, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddCharPage.module.css"
 
 function AddCharPage() {
     let navigate = useNavigate(); 
+
     const routeChange = () =>{ 
         let path = `/`; 
         navigate(path);
     }
+
+    const [formData, setFormData] = useState({
+        name: "",
+        class_: "Экзограф",
+        family: "Дети магов",
+        type: "Выживший",
+    });
+      
+    const handleChange = (e) => {
+        console.log(e.target.name, e.target.value);
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+      };
+      
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post("http://192.168.31.59:8000/api/add_character", formData);
+            console.log("Успешно отправлено:", response.data);
+            routeChange();
+        } catch (error) {
+            console.error("Ошибка:", error);
+        }
+        };
 
     return (
         <div className={styles.container}>
@@ -21,9 +46,9 @@ function AddCharPage() {
                     <h1 className={styles.input_tite}>Тип: </h1>
                 </div>
                 <div className={styles.inputs}>
-                    <input className={styles.name}></input>
+                    <input className={styles.name} name="name" value={formData.name} onChange={handleChange}></input>
 
-                    <select className={styles.class}>
+                    <select className={styles.class} name="class_" value={formData.class_} onChange={handleChange}>
                         <option>Экзограф</option>
                         <option>Кинетик</option>
                         <option>Вуду</option>
@@ -32,7 +57,7 @@ function AddCharPage() {
 
                     </select>
                     
-                    <select className={styles.family}>
+                    <select className={styles.family} name="family" value={formData.family} onChange={handleChange}>
                         <option>Дети магов</option>
                         <option>Военные династии</option>
                         <option>Кланы торговцев</option>
@@ -40,7 +65,7 @@ function AddCharPage() {
                         <option>Учёные Родословные</option>
                     </select>
                     
-                    <select className={styles.type}>
+                    <select className={styles.type} name="type" value={formData.type} onChange={handleChange}>
                         <option>Выживший</option>
                         <option>Ремесленник</option>
                         <option>Потомок</option>
@@ -53,7 +78,7 @@ function AddCharPage() {
     
             <div className={styles.buttons_container}>
                 <button className={styles.buttons} onClick={routeChange}>Назад</button>
-                <button className={styles.buttons} onClick={routeChange}>Создать</button>
+                <button className={styles.buttons} onClick={handleSubmit}>Создать</button>
             </div>
             
         </div>

@@ -15,7 +15,7 @@ function Characters() {
     }
 
     useEffect(() => {
-        axios.get("http://192.168.96.40:8000/api/show_characters")
+        axios.get("http://192.168.31.59:8000/api/show_characters")
             .then(response => setData(response.data.message))
             .catch(error => console.error("Ошибка:", error));
     }, []);
