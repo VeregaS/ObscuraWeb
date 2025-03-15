@@ -1,6 +1,5 @@
 import uvicorn
 import asyncio
-import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from functions import show_characters, connect_to_db, disconnect_db, add_character
