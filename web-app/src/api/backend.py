@@ -43,10 +43,3 @@ async def call_add_characters(data: dict):
 @app.get("/api/test")
 async def test():
     return {"message": "Hello"}
-
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="10.207.255.128", port=8000)
-    # uvicorn.run(app, host="192.168.31.59", port=8000)
-    
-    
