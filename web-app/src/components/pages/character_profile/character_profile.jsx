@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { FiChevronLeft } from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./character_profile.module.css"
@@ -9,7 +10,11 @@ function CharacterPage() {
     const { id } = useParams();
     const [character, setCharacter] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+      let path = `/`; 
+      navigate(path);
+  }
 
     const CATEGORIES = {
         mio: ["Выносливость", "Сноровка", "Стойкость", "Сила"],
@@ -67,6 +72,10 @@ function CharacterPage() {
     
     return (
         <div className={styles.container}>
+            <div className={styles.back_container} onClick={routeChange}>
+              <FiChevronLeft className={styles.icon_back}/>
+              <p className={styles.back_text}>Назад</p>
+            </div>
             <div className={styles.up_part}>
                 <div className={styles.photo}></div>
                 <div className={styles.main_stats}>
@@ -95,6 +104,10 @@ function CharacterPage() {
                 </div>
                 ))}
             </div>
+
+            <h1 className={styles.title}>Инвентарь</h1>
+            <p className={styles.inventory}>{character['inventory']}</p>
+
         </div>
     );
 }

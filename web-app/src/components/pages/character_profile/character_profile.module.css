@@ -1,14 +1,36 @@
 .container {
+    user-select: none;
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     align-items: stretch;
-    margin-top: 2vh;
+    margin-top: 1.5vh;
     margin-left: 7vw;
     margin-right: 7vw;
     width: auto;
     max-width: 380px;
 }
+
+.back_container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vh;
+}
+
+.back_text {
+    font-family: montserrat;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-main);
+}
+
+.back_container > svg {
+    width: 18px;
+    height: 18px;
+    color: var(--dark-main);
+    stroke-width: 2.5px;
+}
+
 
 
 .up_part {
@@ -66,6 +88,7 @@
     width: 100%;
     height: auto;
     margin-top: 2vh;
+    margin-bottom: 2vh;
     justify-content: space-between;
 }
 
@@ -98,3 +121,10 @@
     background-color: var(--dark-main);
 }
   
+
+.inventory {
+    font-family: montserrat;
+    color: var(--dark-main);
+    font-weight: 600;
+    font-size: 16px;
+}
