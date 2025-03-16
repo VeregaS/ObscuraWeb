@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import styles from "./characters.module.css"
 
@@ -15,7 +15,7 @@ function Characters() {
     }
 
     useEffect(() => {
-        axios.get("https://obscuraweb-production.up.railway.app/api/show_characters")
+        axios.get("http://10.207.255.128:8000/api/show_characters")
             .then(response => setData(response.data.message))
             .catch(error => console.error("Ошибка:", error));
     }, []);
@@ -26,7 +26,9 @@ function Characters() {
             {data.length > 0 ? (
                 <ul className={styles.list}>
                     {data.map((char, index) => (
-                        <li key={index}>{char}</li>
+                        <Link to={`/character/${char[1].replace('#', '')}`}>
+                            <li key={index}>{char}</li>
+                        </Link>
                     ))}
                 </ul>
             ) : (
