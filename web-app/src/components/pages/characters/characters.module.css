@@ -37,3 +37,13 @@
     color: var(--dark-main);
     padding: 1%;
 }
+
+.character {
+    text-decoration: none;
+}
+
+.character:visited, .character:hover, 
+.character:active, .character:link {
+    color: var(--dark-main);
+}
+
