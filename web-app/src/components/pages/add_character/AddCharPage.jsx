@@ -106,7 +106,7 @@ function AddCharPage() {
                     skill: CATEGORIES[category][index],
                     points: value,
                 }))
-            ),
+            )
         };
 
         console.log("📝 Данные персонажа:", characterData);

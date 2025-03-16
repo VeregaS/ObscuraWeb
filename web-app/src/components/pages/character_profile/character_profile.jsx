@@ -59,6 +59,7 @@ function CharacterPage() {
       console.log(character);
       const get_attributes = character['attributes'];
       const attributes = JSON.parse(get_attributes);
+      
       const getPoints = (skillName) => {
         const skill = attributes.find(s => s.skill === skillName);
         return skill ? skill.points : null;

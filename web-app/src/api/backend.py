@@ -41,8 +41,9 @@ async def call_add_characters(data: dict):
         family = data['family']
         type = data['type']
         attributes = data['attributes']
+        hp = attributes[2]['points'] * 5
         
-        send_data = [name, class_, family, type, attributes]
+        send_data = [name, class_, family, type, attributes, hp]
         return await add_character(send_data, db)
     finally:
         await disconnect_db(db)

@@ -21,11 +21,11 @@ async def get_character(id, db):
 
 async def add_character(data, db):
     try:
-        name, class_, family, type, attributes = data
+        name, class_, family, type, attributes, hp = data
         attributes = json.dumps(attributes)
-        print(f"Добавляем персонажа: {name}, {class_}, {family}, {type}, {attributes}")
+        print(f"Добавляем персонажа: {name}, {class_}, {family}, {type}, {attributes}, {hp}")
         
-        await db.add_character(name, class_, family, type, attributes)
+        await db.add_character(name, class_, family, type, attributes, hp)
         return {"message": f"success {data}"}
     except Exception as e:
         return {"message": f"unluck: {data} {e}"}
