@@ -27,7 +27,7 @@ function Characters() {
                 <ul className={styles.list}>
                     {data.map((char, index) => (
                         <Link to={`/character/${char[1].replace('#', '')}`} className={styles.character}>
-                            <li key={index}>{char[0]} [{char[1]}]</li>
+                            <li key={index}>[{char[1]}] {char[0]}</li>
                         </Link>
                     ))}
                 </ul>

@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { FiChevronLeft } from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import styles from "./character_profile.module.css"
 
 
@@ -28,8 +27,8 @@ function CharacterPage() {
         "Потомки отшельников": { mio: 7, neuro: 6, senso: 7 },
         "Учёные родословные": { mio: 5, neuro: 9, senso: 6 },
     };
-    const [charFamily, setCharFamily] = useState("Дети магов");
-    const [points, setPoints] = useState(CHARACTER_FAMILYS[charFamily]);
+    const [charFamily] = useState("Дети магов");
+    const [points] = useState(CHARACTER_FAMILYS[charFamily]);
 
     const SkillLevel = ({ level }) => {
         return (
