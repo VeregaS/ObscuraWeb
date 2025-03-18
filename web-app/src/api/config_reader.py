@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Config(BaseSettings):
     DSN_LINK: SecretStr
+    HOST: SecretStr
         
     model_config = SettingsConfigDict(
         env_file=join(dirname(__file__), ".env"),

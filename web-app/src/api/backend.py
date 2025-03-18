@@ -3,6 +3,7 @@ import asyncio
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from functions import show_characters, connect_to_db, disconnect_db, add_character, get_character
+from config_reader import config
 
 app = FastAPI()
 app.add_middleware(
@@ -12,6 +13,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+HOST = config.HOST.get_secret_value()
 
 
 @app.get("/api/show_characters")
@@ -56,7 +58,4 @@ async def test():
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="10.207.255.128", port=8000)
-    # uvicorn.run(app, host="192.168.31.59", port=8000)
-    
-    
+    uvicorn.run(app, host=HOST, port=8000)

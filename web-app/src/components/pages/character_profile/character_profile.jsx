@@ -44,9 +44,10 @@ function CharacterPage() {
           </div>
         );
     };
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
-        fetch(`http://10.207.255.128:8000/api/get_character/${encodeURIComponent(id)}`)
+        fetch(`http://${apiUrl}:8000/api/get_character/${encodeURIComponent(id)}`)
           .then((res) => res.json())
           .then((data) => {
             setCharacter(data.message);

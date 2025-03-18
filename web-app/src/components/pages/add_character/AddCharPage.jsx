@@ -111,7 +111,8 @@ function AddCharPage() {
 
         console.log("📝 Данные персонажа:", characterData);
         try {
-            const response = await axios.post("http://10.207.255.128:8000/api/add_character", characterData);
+            const apiUrl = process.env.REACT_APP_API_URL;
+            const response = await axios.post(`http://${apiUrl}:8000/api/add_character`, characterData);
             console.log("Успешно отправлено:", response.data);
             routeChange();
         } catch (error) {

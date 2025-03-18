@@ -15,10 +15,11 @@ function Characters() {
     }
 
     useEffect(() => {
-        axios.get("http://10.207.255.128:8000/api/show_characters")
+        axios.get(`http://${process.env.REACT_APP_API_URL}:8000/api/show_characters`)
             .then(response => setData(response.data.message))
             .catch(error => console.error("Ошибка:", error));
     }, []);
+    
 
     return (
         <div className={styles.container}>
@@ -26,8 +27,12 @@ function Characters() {
             {data.length > 0 ? (
                 <ul className={styles.list}>
                     {data.map((char, index) => (
-                        <Link to={`/character/${char[1].replace('#', '')}`} className={styles.character}>
-                            <li key={index}>[{char[1]}] {char[0]}</li>
+                        <Link 
+                            key={char[1]}  // Добавляем key
+                            to={`/character/${char[1].replace('#', '')}`} 
+                            className={styles.character}
+                        >
+                            <li>[{char[1]}] {char[0]}</li>
                         </Link>
                     ))}
                 </ul>
