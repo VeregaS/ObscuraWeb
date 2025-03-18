@@ -1,19 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { FiChevronLeft, FiEdit } from "react-icons/fi";
-import { useNavigate, useParams, Link } from "react-router-dom";
-import styles from "./character_profile.module.css"
+import { useNavigate, useParams } from "react-router-dom";
+import styles from "./edit_character.module.css"
 
 
-function CharacterPage() {
+function EditCharacterPage() {
     const { id } = useParams();
     const [character, setCharacter] = useState(null);
     const [loading, setLoading] = useState(true);
-    let navigate = useNavigate(); 
-    const routeChangeBack = () =>{ 
-      let path = `/`; 
-      navigate(path);
+    let navigate = useNavigate();  
+    const routeChange = () =>{ 
+        let path = `/`; 
+        navigate(path);
     }
+
 
     const CATEGORIES = {
         "МИО": ["Выносливость", "Сноровка", "Стойкость", "Сила"],
@@ -70,18 +72,24 @@ function CharacterPage() {
         return skill ? skill.points : null;
       };
     
+      const handleEditCharacter = async () => {
+        try {
+            const apiUrl = process.env.REACT_APP_API_URL;
+            // const response = await axios.post(`http://${apiUrl}:8000/api/edit_character`, characterData);
+            // console.log("Успешно отправлено:", response.data);
+            routeChange();
+        } catch (error) {
+            console.error("Ошибка:", error);
+        }
+
+    };
+    
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-              <div className={styles.back_container} onClick={routeChangeBack}>
+              <div className={styles.back_container} onClick={handleEditCharacter}>
                 <FiChevronLeft className={styles.icon_back}/>
                 <p className={styles.back_text}>Назад</p>
-              </div>
-              <div className={styles.edit}>
-                <Link to={`/edit_character/${encodeURIComponent(id)}`} className={styles.character}>
-                  <p className={styles.edit_text}>Редактировать</p>
-                  <FiEdit className={styles.edit_icon} />
-                </Link>
               </div>
             </div>
             
@@ -123,4 +131,5 @@ function CharacterPage() {
     );
 }
 
-export default CharacterPage;
+
+export default EditCharacterPage;

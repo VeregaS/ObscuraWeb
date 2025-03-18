@@ -19,6 +19,11 @@ async def get_character(id, db):
     return {"message": character}
 
 
+async def edit_character(data, db):
+    character = await db.edit_character(data)
+    return {"message": character}
+
+
 async def add_character(data, db):
     try:
         name, class_, family, type, attributes, hp = data

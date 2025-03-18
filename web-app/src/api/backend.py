@@ -2,7 +2,7 @@ import uvicorn
 import asyncio
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from functions import show_characters, connect_to_db, disconnect_db, add_character, get_character
+from functions import show_characters, connect_to_db, disconnect_db, add_character, get_character, edit_character
 from config_reader import config
 
 app = FastAPI()
@@ -47,6 +47,23 @@ async def call_add_characters(data: dict):
         
         send_data = [name, class_, family, type, attributes, hp]
         return await add_character(send_data, db)
+    finally:
+        await disconnect_db(db)
+        
+        
+@app.post('/api/edit_character')
+async def call_edit_character(data: dict):
+    db = await connect_to_db()
+    try:
+        id = data['id']
+        hp = data['hp']
+        money = data['money']
+        special = data['special']
+        attributes = data['attributes']
+        inventory = data['inventory']
+        
+        send_data = [id, hp, money, special, attributes, inventory]
+        return await edit_character(send_data, db)
     finally:
         await disconnect_db(db)
 

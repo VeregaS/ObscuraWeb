@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+    display: flex;
+    height: 75px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 500px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-main);
+}
+
+.fractions {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.icons {
+    width: 30px;
+    height: 30px;
+    color: var(--dark-main);
+}
+
+.title {
+    font-family: montserrat;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-main);
+}

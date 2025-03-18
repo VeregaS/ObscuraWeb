@@ -20,7 +20,8 @@ class Database:
     async def add_character(self, name: str, class_: str, family: str, type: str, attributes: list, hp: int):
         async with self.pool.acquire() as conn:
             await conn.execute(
-                "INSERT INTO characters (name, class, family, type, attributes, hp) VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING",
+                "INSERT INTO characters (name, class, family, type, attributes, hp) \
+                VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING",
                 name, class_, family, type, attributes, hp
             )
 
@@ -69,4 +70,13 @@ class Database:
             await conn.execute(
                 "INSERT INTO characters (name, hp, inventory) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING",
                 name, hp, inventory
+            )
+    
+    async def edit_character(self, data: list):
+        id, hp, money, special, attributes, inventory = data
+        async with self.pool.acquire() as conn:
+            await conn.execute(
+                "UPDATE characters SET (hp, money, special, attributes, inventory) = ($2, $3, $4, $5, $6) \
+                WHERE formatted_id = $1",
+                id, hp, money, special, attributes, inventory
             )

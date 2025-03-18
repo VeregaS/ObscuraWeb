@@ -7,6 +7,7 @@
 }
 
 .header {
+    user-select: none;
     color: var(--version-main);
     font-family: montserrat;
     font-weight: 600;

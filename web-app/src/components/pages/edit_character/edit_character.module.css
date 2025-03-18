@@ -9,7 +9,6 @@
     margin-right: 7vw;
     width: auto;
     max-width: 380px;
-    margin-bottom: 80px;
 }
 
 .header {
@@ -56,17 +55,6 @@
     color: var(--dark-main);
     stroke-width: 2.5px;
 }
-
-.character {
-    display: flex;
-    text-decoration: none;
-}
-
-.character:visited, .character:hover, 
-.character:active, .character:link {
-    color: var(--dark-main);
-}
-
 
 .up_part {
     display: flex;
