@@ -28,7 +28,7 @@ function Characters() {
                 <ul className={styles.list}>
                     {data.map((char, index) => (
                         <Link 
-                            key={char[1]}  // Добавляем key
+                            key={char[1]}
                             to={`/character/${char[1].replace('#', '')}`} 
                             className={styles.character}
                         >
@@ -37,7 +37,7 @@ function Characters() {
                     ))}
                 </ul>
             ) : (
-                <p>Загрузка...</p>
+                <p className={styles.list}>Загрузка...</p>
             )}
             <button className={styles.buttons} onClick={routeChange} >Добавить</button>
         </div>
