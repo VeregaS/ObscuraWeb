@@ -10,23 +10,25 @@ import FractionsPage from "./components/pages/fractions/fractions";
 import styles from "./App.module.css";
 
 function App() {
-    const location = useLocation();
-    const hideFooterOn = ["/", "/add-character-page"];
-    const isFractionPage = matchPath("/fractions/:id", location.pathname);
+  const location = useLocation();
+  const hideFooterOn = ["/", "/add-character-page"];
+  const isFractionPage = matchPath("/fractions/:id", location.pathname);
 
-    return (
-        <div className={styles.App}>
-            <Header title="Obscura v0.1a"/>
-            <Routes>
-                <Route path='/' element={<Characters/>} />
-                <Route path='/add-character-page' element={<AddCharPage/>} />
-                <Route path="/character/:id" element={<CharacterPage />} />
-                <Route path="/edit_character/:id" element={<EditCharacterPage />} />
-                <Route path="/fractions/:id" element={<FractionsPage />} />
-            </Routes>
-            {!hideFooterOn.includes(location.pathname) && !isFractionPage && <Footer />}
-        </div>
-    );
+  return (
+    <div className={styles.App}>
+      <Header title="Obscura v0.1a" />
+      <Routes>
+        <Route path="/" element={<Characters />} />
+        <Route path="/add-character-page" element={<AddCharPage />} />
+        <Route path="/character/:id" element={<CharacterPage />} />
+        <Route path="/edit_character/:id" element={<EditCharacterPage />} />
+        <Route path="/fractions/:id" element={<FractionsPage />} />
+      </Routes>
+      {!hideFooterOn.includes(location.pathname) && !isFractionPage && (
+        <Footer />
+      )}
+    </div>
+  );
 }
 
 export default App;

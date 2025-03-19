@@ -4,10 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./colors/light_index.css";
 
-const app = ReactDomClient.createRoot(document.getElementById("root"))
+const app = ReactDomClient.createRoot(document.getElementById("root"));
 
 app.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
