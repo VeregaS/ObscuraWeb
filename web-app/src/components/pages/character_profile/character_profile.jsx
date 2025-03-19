@@ -57,7 +57,7 @@ function CharacterPage() {
           console.error("Ошибка:", err);
           setLoading(false);
         });
-    }, [id]);
+    }, [id, apiUrl]);
   
     if (loading) return <p  className={styles.back_text}>Загрузка...</p>;
     if (!character) return <p>Персонаж не найден</p>;

@@ -56,7 +56,7 @@ const CHARACTER_FAMILYS = {
         console.error("Ошибка:", err);
         setLoading(false);
       });
-  }, [id]);
+  }, [id, apiUrl]);
 
   if (loading) return <p className={styles.back_text}>Загрузка...</p>;
   if (!character) return <p>Персонаж не найден</p>;
@@ -71,7 +71,7 @@ const CHARACTER_FAMILYS = {
 
   const handleEditCharacter = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
+      // const apiUrl = process.env.REACT_APP_API_URL;
       routeChange();
     } catch (error) {
       console.error("Ошибка:", error);
