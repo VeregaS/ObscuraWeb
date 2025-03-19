@@ -19,6 +19,12 @@ async def get_character(id, db):
     return {"message": character}
 
 
+async def get_character_reputation(id, db):
+    new_id = f"#{id}"
+    data = await db.get_character_reputation(new_id)
+    return {"message": data}
+
+
 async def edit_character(data, db):
     character = await db.edit_character(data)
     return {"message": character}

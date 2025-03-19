@@ -19,13 +19,6 @@
     background-color: var(--background-main);
 }
 
-.fractions {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-}
-
 .icons {
     width: 30px;
     height: 30px;
@@ -36,5 +29,18 @@
     font-family: montserrat;
     font-size: 16px;
     font-weight: 600;
+    color: var(--dark-main);
+}
+
+.character {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    text-decoration: none;
+}
+
+.character:visited, .character:hover, 
+.character:active, .character:link {
     color: var(--dark-main);
 }

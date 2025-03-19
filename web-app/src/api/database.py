@@ -80,3 +80,8 @@ class Database:
                 WHERE formatted_id = $1",
                 id, hp, money, special, attributes, inventory
             )
+
+    async def get_character_reputation(self, id: str) -> Optional[dict]:
+        async with self.pool.acquire() as conn:
+            return await conn.fetchrow("SELECT * FROM factions WHERE char_id = $1", id)
+    

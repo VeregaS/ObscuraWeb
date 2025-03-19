@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, matchPath } from "react-router-dom";
 import Header from "./components/blocks/header/header";
 import Characters from "./components/pages/characters/Characters";
 import AddCharPage from "./components/pages/add_character/AddCharPage";
@@ -9,10 +9,10 @@ import Footer from "./components/blocks/footer/footer";
 import FractionsPage from "./components/pages/fractions/fractions";
 import styles from "./App.module.css";
 
-
 function App() {
     const location = useLocation();
     const hideFooterOn = ["/", "/add-character-page"];
+    const isFractionPage = matchPath("/fractions/:id", location.pathname);
 
     return (
         <div className={styles.App}>
@@ -24,10 +24,9 @@ function App() {
                 <Route path="/edit_character/:id" element={<EditCharacterPage />} />
                 <Route path="/fractions/:id" element={<FractionsPage />} />
             </Routes>
-            {!hideFooterOn.includes(location.pathname) && <Footer />}
+            {!hideFooterOn.includes(location.pathname) && !isFractionPage && <Footer />}
         </div>
     );
 }
-    
 
 export default App;

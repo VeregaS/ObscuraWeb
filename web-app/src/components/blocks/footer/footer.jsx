@@ -10,7 +10,7 @@ function Footer() {
 
     return (
         <footer className={styles.footer}>
-            <div className={styles.fractions}>
+            <div>
                 <Link to={`/fractions/${id}`} className={styles.character}>
                     <FiUsers className={styles.icons} />
                     <p className={styles.title}>Фракции</p>
