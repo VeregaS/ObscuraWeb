@@ -12,7 +12,7 @@ import styles from "./App.module.css";
 function App() {
   const location = useLocation();
   const hideFooterOn = ["/", "/add-character-page"];
-  const isFractionPage = matchPath("/fractions/:id", location.pathname);
+  // const isFractionPage = matchPath("/fractions/:id", location.pathname);
 
   return (
     <div className={styles.App}>
@@ -24,7 +24,7 @@ function App() {
         <Route path="/edit_character/:id" element={<EditCharacterPage />} />
         <Route path="/fractions/:id" element={<FractionsPage />} />
       </Routes>
-      {!hideFooterOn.includes(location.pathname) && !isFractionPage && (
+      {!hideFooterOn.includes(location.pathname) && (
         <Footer />
       )}
     </div>

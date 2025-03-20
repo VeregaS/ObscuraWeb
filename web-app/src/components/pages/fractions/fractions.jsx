@@ -7,7 +7,7 @@ function FractionsPage() {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   const location = useLocation();
-  const match = location.pathname.match(/\/fractions\/([^/]+)/); // Извлекаем id из URL
+  const match = location.pathname.match(/\/fractions\/([^/]+)/);
   const id = match ? match[1] : null;
 
   const [info, setInfo] = useState(null);
@@ -31,12 +31,14 @@ function FractionsPage() {
 
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.fractions}>
+        <p className={styles.title}>Отношения с фракциями</p>
         {Object.entries(info).map(([key, value]) => {
           if (key !== "char_id") {
             return (
-              <div key={key}>
-                {key}: {value}
+              <div key={key} className={styles.fraction}>
+                <p>{key}</p>
+                <p>{value}</p>
               </div>
             );
           }
