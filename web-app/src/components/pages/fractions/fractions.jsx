@@ -32,6 +32,7 @@ function FractionsPage() {
     
     const percent = ((reputation - centerValue) / (maxValue - minValue) + 0.5) * 100;
     const level = getReputationLevel(reputation);
+    const textColor = level.className;
   
     return (
       <div className={styles.reputation_container}>
@@ -39,7 +40,7 @@ function FractionsPage() {
           <div className={`${styles.rep_fill} ${styles[level.className]}`} style={{ width: `${percent}%`, borderRadius: 5}}></div>
           <div className={styles.rep_marker} style={{ left: `calc(${percent}% - 6px)` }}></div>
         </div>
-        <div className={styles.rep_label}>{level.label}</div>
+        <div className={`${styles.rep_label} ${styles[textColor]}`}>{level.label}</div>
       </div>
     );
   };

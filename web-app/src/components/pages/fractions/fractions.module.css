@@ -66,19 +66,17 @@
     border-radius: 3px;
 }
 
-.rep_hate { background-color: #6B2737; } /* Глубокий бордовый (ненависть) */
-.rep_hostile { background-color: #92374D; } /* Тёмно-красный (враждебность) */
-.rep_feew { background-color: #A66B78; } /* Пыльно-розовый (презрение) */
-.rep_neutral { background-color: #778DA9; } /* Светло-серый-синий (равнодушие) */
-.rep_friendly { background-color: #58A4B0; } /* Голубовато-бирюзовый (дружелюбие) */
-.rep_honored { background-color: #378BA4; } /* Средний голубой (уважение) */
-.rep_revered { background-color: #1B4965; } /* Тёмно-синий (почтение) */
-.rep_exalted { background-color: #206A8A; } /* Глубокий бирюзово-синий (превознесение) */
- /* Очень тёмный синий (превознесение) */
-
+.rep_hate { background-color: #6B2737; color: #6B2737; } 
+.rep_hostile { background-color: #92374D; color: #92374D; }
+.rep_feew { background-color: #A66B78; color: #A66B78; } 
+.rep_neutral { background-color: #778DA9; color: #778DA9; } 
+.rep_friendly { background-color: #58A4B0; color: #58A4B0; }
+.rep_honored { background-color: #378BA4; color: #378BA4; }
+.rep_revered { background-color: #1B4965; color: #1B4965; }
+.rep_exalted { background-color: #206A8A; color: #206A8A; }
 
 .rep_label {
     margin-top: 5px;
     font-size: 14px;
-    color: #444;
+    background-color: transparent !important;
 }
