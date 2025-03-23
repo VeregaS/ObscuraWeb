@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useLocation, matchPath } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/blocks/header/header";
 import Characters from "./components/pages/characters/Characters";
 import AddCharPage from "./components/pages/add_character/AddCharPage";
