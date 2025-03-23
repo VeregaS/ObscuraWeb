@@ -39,7 +39,7 @@ function FractionsPage() {
           <div className={`${styles.rep_fill} ${styles[level.className]}`} style={{ width: `${percent}%`, borderRadius: 5}}></div>
           <div className={styles.rep_marker} style={{ left: `calc(${percent}% - 6px)` }}></div>
         </div>
-        <div className={styles.rep_label}>{level.label} ({reputation})</div>
+        <div className={styles.rep_label}>{level.label}</div>
       </div>
     );
   };
