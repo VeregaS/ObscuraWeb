@@ -61,7 +61,6 @@ function CharacterPage() {
   
     if (loading) return <p  className={styles.back_text}>Загрузка...</p>;
     if (!character) return <p>Персонаж не найден</p>;
-    console.log(character);
     const get_attributes = character['attributes'];
     const attributes = JSON.parse(get_attributes);
     

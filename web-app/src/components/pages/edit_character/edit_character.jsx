@@ -89,7 +89,6 @@ function EditCharacterPage() {
     };
 
     try {
-      console.log("Data:", characterData);
       const response = await axios.post(`http://${apiUrl}:8000/api/edit_character`, characterData);
       console.log("Успешно отправлено:", response.data);
       navigate(`/character/${encodeURIComponent(id)}`);
