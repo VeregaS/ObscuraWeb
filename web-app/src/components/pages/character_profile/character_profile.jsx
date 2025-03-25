@@ -90,7 +90,7 @@ function CharacterPage() {
               <div className={styles.photo}></div>
               <div className={styles.main_stats}>
                   <h1 className={styles.stats}>{character['name']}</h1>
-                  <h1 className={styles.stats}>HP: {character['hp']} из {character['hp']}</h1>
+                  <h1 className={styles.stats}>HP: {character['hp']} из {getPoints("Стойкость") * 10 + 5}</h1>
                   <h1 className={styles.stats}>Что-то особое</h1>
                   <h1 className={styles.stats}>{character['money']} частиц</h1>
               </div>

@@ -64,7 +64,7 @@ async def call_add_characters(data: dict):
 async def call_edit_character(data: dict):
     db = await connect_to_db()
     try:
-        id = data['id']
+        id = "#" + str(data['id'])
         hp = data['hp']
         money = data['money']
         special = data['special']

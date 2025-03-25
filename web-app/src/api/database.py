@@ -76,9 +76,8 @@ class Database:
         id, hp, money, special, attributes, inventory = data
         async with self.pool.acquire() as conn:
             await conn.execute(
-                "UPDATE characters SET (hp, money, special, attributes, inventory) = ($2, $3, $4, $5, $6) \
-                WHERE formatted_id = $1",
-                id, hp, money, special, attributes, inventory
+                "UPDATE characters SET (hp, money, special, attributes, inventory) = ($2, $3, $4, $5, $6) WHERE formatted_id = $1",
+                id, int(hp), int(money), str(special), attributes, inventory
             )
 
     async def get_character_reputation(self, id: str) -> Optional[dict]:
