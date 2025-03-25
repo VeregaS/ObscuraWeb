@@ -9,6 +9,7 @@
     margin-right: 7vw;
     width: auto;
     max-width: 380px;
+    margin-bottom: 80px;
 }
 
 .header {
@@ -51,6 +52,16 @@
     align-items: center;
 }
 
+.character {
+    display: flex;
+    text-decoration: none;
+}
+
+.character:visited, .character:hover, 
+.character:active, .character:link {
+    color: var(--dark-main);
+}
+
 .edit_icon {
     color: var(--dark-main);
     stroke-width: 2.5px;
@@ -64,9 +75,9 @@
 .photo {
     width: 30vw;
     height: 30vw;
-    min-width: 80px;
+    min-width: 103px;
     max-width: 140px;
-    min-height: 80px;
+    min-height: 103px;
     max-height: 140px;
     background-color: gray;
     margin-right: 7%;
@@ -76,10 +87,40 @@
     height: 30vw;
     min-height: 80px;
     max-height: 140px;
+    min-width: 151px;
+    width: 40vw;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-around;
+}
+
+.edit_hp {
+    font-family: montserrat;
+    font-size: 20px;
+    font-weight: 600;
+    border-width: 2px;
+    width: 13%;
+    text-align: center;
+    border: 2px solid var(--dark-main);
+    color: var(--dark-main);
+    background-color: rgba(240, 248, 255, 0);
+}
+
+.edit_hp::placeholder, .edit_money::placeholder {
+    color: var(--dark-main);
+}
+
+.edit_money {
+    font-family: montserrat;
+    font-size: 20px;
+    font-weight: 600;
+    border-width: 2px;
+    width: 45%;
+    text-align: center;
+    border: 2px solid var(--dark-main);
+    color: var(--dark-main);
+    background-color: rgba(240, 248, 255, 0);
 }
 
 .stats {

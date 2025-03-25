@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { FiChevronLeft} from "react-icons/fi";
+import { FiChevronLeft, FiEdit} from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./edit_character.module.css";
 
@@ -10,7 +10,7 @@ function EditCharacterPage() {
   const [loading, setLoading] = useState(true);
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `/`;
+    let path = `/character/${encodeURIComponent(id)}`;
     navigate(path);
   };
 
@@ -85,6 +85,12 @@ const CHARACTER_FAMILYS = {
           <FiChevronLeft className={styles.icon_back} />
           <p className={styles.back_text}>Назад</p>
         </div>
+        <div className={styles.edit}>
+        <div className={styles.character} onClick={handleEditCharacter}>
+            <p className={styles.edit_text}>Сохранить</p>
+            <FiEdit className={styles.edit_icon} />
+        </div>
+        </div>
       </div>
 
       <div className={styles.up_part}>
@@ -92,10 +98,10 @@ const CHARACTER_FAMILYS = {
         <div className={styles.main_stats}>
           <h1 className={styles.stats}>{character["name"]}</h1>
           <h1 className={styles.stats}>
-            HP: {character["hp"]}/{character["hp"]}
+            HP: <input placeholder={character['hp']} className={styles.edit_hp}></input> из {character["hp"]}
           </h1>
           <h1 className={styles.stats}>Что-то особое</h1>
-          <h1 className={styles.stats}>500 рублей</h1>
+          <h1 className={styles.stats}><input placeholder={character['money']} className={styles.edit_money}></input> частиц</h1>
         </div>
       </div>
 
@@ -117,9 +123,6 @@ const CHARACTER_FAMILYS = {
           </div>
         ))}
       </div>
-
-      <h1 className={styles.title}>Инвентарь</h1>
-      <p className={styles.inventory}>{character["inventory"]}</p>
     </div>
   );
 }

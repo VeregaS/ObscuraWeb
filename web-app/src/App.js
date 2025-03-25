@@ -7,6 +7,7 @@ import CharacterPage from "./components/pages/character_profile/character_profil
 import EditCharacterPage from "./components/pages/edit_character/edit_character";
 import Footer from "./components/blocks/footer/footer";
 import FractionsPage from "./components/pages/fractions/fractions";
+import CharacterInventory from "./components/pages/character_inventory/character_inventory";
 import styles from "./App.module.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/character/:id" element={<CharacterPage />} />
         <Route path="/edit_character/:id" element={<EditCharacterPage />} />
         <Route path="/fractions/:id" element={<FractionsPage />} />
+        <Route path="/inventory/:id" element={<CharacterInventory />} />
       </Routes>
       {!hideFooterOn.includes(location.pathname) && (
         <Footer />
