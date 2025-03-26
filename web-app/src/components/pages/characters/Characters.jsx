@@ -23,7 +23,6 @@ function Characters() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Список персонажей:</h1>
-      {data.length > 0 ? (
         <ul className={styles.list}>
           {data.map((char, index) => (
             <Link
@@ -37,9 +36,6 @@ function Characters() {
             </Link>
           ))}
         </ul>
-      ) : (
-        <p className={styles.list}>Загрузка...</p>
-      )}
       <button className={styles.buttons} onClick={routeChange}>
         Добавить
       </button>

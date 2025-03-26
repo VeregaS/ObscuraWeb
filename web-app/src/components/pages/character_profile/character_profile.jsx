@@ -10,6 +10,7 @@ function CharacterPage() {
   const { id } = useParams();
   const [character, setCharacter] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   let navigate = useNavigate(); 
   const routeChangeBack = () =>{ 
     let path = `/`; 
@@ -51,26 +52,33 @@ function CharacterPage() {
       fetch(`http://${apiUrl}:8000/api/get_character/${encodeURIComponent(id)}`)
         .then((res) => res.json())
         .then((data) => {
-          setCharacter(data.message);
           setLoading(false);
+          setCharacter(data.message);
         })
         .catch((err) => {
           console.error("Ошибка:", err);
+          setError(err);
           setLoading(false);
         });
     }, [id, apiUrl]);
+
   
-    if (loading) return <p  className={styles.back_text}>Загрузка...</p>;
-    if (!character) return <p>Персонаж не найден</p>;
+  if (loading) {
+    return (<div></div>);
+  }
+  else if (error) {
+    return (<div> Ошибка: {error.message} </div>);
+  }
+  else {
     const get_attributes = character['attributes'];
     const attributes = JSON.parse(get_attributes);
-    
+
     const getPoints = (skillName) => {
       const skill = attributes.find(s => s.skill === skillName);
       return skill ? skill.points : null;
     };
-  
-  return (
+
+    return (
       <div className={styles.container}>
           <div className={styles.header}>
             <div className={styles.back_container} onClick={routeChangeBack}>
@@ -117,6 +125,7 @@ function CharacterPage() {
           </div>
       </div>
   );
+  }
 }
 
 export default CharacterPage;

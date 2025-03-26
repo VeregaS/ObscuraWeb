@@ -5,7 +5,8 @@ import styles from "./fractions.module.css";
 
 function FractionsPage() {
   const apiUrl = process.env.REACT_APP_API_URL;
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const location = useLocation();
   const match = location.pathname.match(/\/fractions\/([^/]+)/);
   const id = match ? match[1] : null;
@@ -46,7 +47,6 @@ function FractionsPage() {
   };
 
   const [info, setInfo] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`http://${apiUrl}:8000/api/get_character_reputation/${id}`)
@@ -57,31 +57,37 @@ function FractionsPage() {
       })
       .catch((err) => {
         console.error("Ошибка:", err);
+        setError(err);
         setLoading(false);
       });
   }, [apiUrl, id]);
 
-  if (loading) return <p className={styles.back_text}>Загрузка...</p>;
-  if (!info) return <p>Персонаж не найден</p>;
-
-  return (
-    <div className={styles.container}>
-      <div className={styles.fractions}>
-        <p className={styles.title}>Отношения с фракциями</p>
-        {Object.entries(info).map(([key, value]) => {
-          if (key !== "char_id") {
-            return (
-              <div key={key} className={styles.fraction}>
-                <p>{key}</p>
-                <ReputationBar key={key} faction={key} reputation={value} />
-              </div>
-            );
-          }
-          return null;
-        })}
+  if (loading) {
+    return(<div></div>);
+  }
+  else if (error) {
+    return(<div> Ошибка: {error.message} </div>);
+  }
+  else {
+    return (
+      <div className={styles.container}>
+        <div className={styles.fractions}>
+          <p className={styles.title}>Отношения с фракциями</p>
+          {Object.entries(info).map(([key, value]) => {
+            if (key !== "char_id") {
+              return (
+                <div key={key} className={styles.fraction}>
+                  <p>{key}</p>
+                  <ReputationBar key={key} faction={key} reputation={value} />
+                </div>
+              );
+            }
+            return null;
+          })}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default FractionsPage;

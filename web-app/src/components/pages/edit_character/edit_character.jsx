@@ -9,6 +9,7 @@ function EditCharacterPage() {
   const { id } = useParams();
   const [character, setCharacter] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [attributes, setAttributes] = useState([]);
   const [data_save, setData] = useState({
     id: encodeURIComponent(id),
@@ -41,6 +42,7 @@ function EditCharacterPage() {
       })
       .catch((err) => {
         console.error("Ошибка:", err);
+        setError(err);
         setLoading(false);
       });
   }, [id, apiUrl]);
@@ -94,83 +96,89 @@ function EditCharacterPage() {
       console.log("Успешно отправлено:", response.data);
       navigate(`/character/${encodeURIComponent(id)}`);
     } catch (error) {
+      setError(error)
       console.error("Ошибка:", error);
     }
   };
 
-  if (loading) return <p className={styles.back_text}>Загрузка...</p>;
-  if (!character) return <p>Персонаж не найден</p>;
-
-  return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles.back_container} onClick={routeChange}>
-          <FiChevronLeft className={styles.icon_back} />
-          <p className={styles.back_text}>Назад</p>
-        </div>
-        <div className={styles.edit} onClick={handleSave}>
-          <p className={styles.edit_text}>Сохранить</p>
-          <FiEdit className={styles.edit_icon} />
-        </div>
-      </div>
-
-      <div className={styles.up_part}>
-        <img src={photo} alt="profile" className={styles.photo}/>
-        <div className={styles.main_stats}>
-          <h1 className={styles.stats}>{character.name}</h1>
-          <h1 className={styles.stats}>
-            HP: <input
-              type="number"
-              placeholder={character.hp}
-              className={styles.edit_hp}
-              value={data_save.hp}
-              onChange={handleHpChange}
-            />
-            из {getPoints("Стойкость") * 10 + 5}
-          </h1>
-          <h1 className={styles.stats}>
-            <input
-              type="number"
-              placeholder={character.money}
-              className={styles.edit_money}
-              value={data_save.money}
-              onChange={handleMoneyChange}
-            /> частиц
-          </h1>
-        </div>
-      </div>
-
-      <h1 className={styles.title}>Характеристики</h1>
-
-      <div className={styles.levels}>
-        {Object.keys(CATEGORIES).map((category) => (
-          <div key={category}>
-            <h3 className={styles.stats_title}>{category.toUpperCase()}</h3>
-            {CATEGORIES[category].map((skill) => {
-              const skillObj = attributes.find((attr) => attr.skill === skill) || { points: 0 };
-              return (
-                <div key={skill} className={styles.skills_container}>
-                  <label className={styles.skill}>
-                    {skill}
-                    <br />
-                    <div className={styles.skillLevel}>
-                      {[...Array(6)].map((_, i) => (
-                        <div
-                          key={i}
-                          className={`${styles.circle} ${skillObj.points > i ? styles.active : ""}`}
-                          onClick={() => handleSkillChange(skill)}
-                        ></div>
-                      ))}
-                    </div>
-                  </label>
-                </div>
-              );
-            })}
+  if (loading) {
+    return(<div></div>);
+  }
+  else if (error) {
+    return(<div> Ошибка: {error.message} </div>);
+  }
+  else {
+    return (
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.back_container} onClick={routeChange}>
+            <FiChevronLeft className={styles.icon_back} />
+            <p className={styles.back_text}>Назад</p>
           </div>
-        ))}
+          <div className={styles.edit} onClick={handleSave}>
+            <p className={styles.edit_text}>Сохранить</p>
+            <FiEdit className={styles.edit_icon} />
+          </div>
+        </div>
+
+        <div className={styles.up_part}>
+          <img src={photo} alt="profile" className={styles.photo}/>
+          <div className={styles.main_stats}>
+            <h1 className={styles.stats}>{character.name}</h1>
+            <h1 className={styles.stats}>
+              HP: <input
+                type="number"
+                placeholder={character.hp}
+                className={styles.edit_hp}
+                value={data_save.hp}
+                onChange={handleHpChange}
+              />
+              из {getPoints("Стойкость") * 10 + 5}
+            </h1>
+            <h1 className={styles.stats}>
+              <input
+                type="number"
+                placeholder={character.money}
+                className={styles.edit_money}
+                value={data_save.money}
+                onChange={handleMoneyChange}
+              /> частиц
+            </h1>
+          </div>
+        </div>
+
+        <h1 className={styles.title}>Характеристики</h1>
+
+        <div className={styles.levels}>
+          {Object.keys(CATEGORIES).map((category) => (
+            <div key={category}>
+              <h3 className={styles.stats_title}>{category.toUpperCase()}</h3>
+              {CATEGORIES[category].map((skill) => {
+                const skillObj = attributes.find((attr) => attr.skill === skill) || { points: 0 };
+                return (
+                  <div key={skill} className={styles.skills_container}>
+                    <label className={styles.skill}>
+                      {skill}
+                      <br />
+                      <div className={styles.skillLevel}>
+                        {[...Array(6)].map((_, i) => (
+                          <div
+                            key={i}
+                            className={`${styles.circle} ${skillObj.points > i ? styles.active : ""}`}
+                            onClick={() => handleSkillChange(skill)}
+                          ></div>
+                        ))}
+                      </div>
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default EditCharacterPage;
