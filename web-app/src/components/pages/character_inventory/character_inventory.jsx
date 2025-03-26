@@ -9,7 +9,7 @@ function CharacterInventory() {
 
   return (
     <div className={styles.container}>
-      <p>ХУУУЙ: {id}</p>
+      
     </div>
   );
 }
