@@ -136,6 +136,7 @@ function AddCharPage() {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            onFocus={(e) => e.target.value = ""}
           ></input>
 
           <select
@@ -143,6 +144,7 @@ function AddCharPage() {
             name="class_"
             value={formData.class_}
             onChange={handleChange}
+            onFocus={(e) => e.target.value = ""}
           >
             <option>Экзограф</option>
             <option>Кинетик</option>
@@ -155,6 +157,7 @@ function AddCharPage() {
             className={styles.family}
             value={charFamily}
             onChange={handleTypeChange}
+            onFocus={(e) => e.target.value = ""}
           >
             {Object.keys(CHARACTER_FAMILYS).map((type) => (
               <option key={type} value={type}>
@@ -168,6 +171,7 @@ function AddCharPage() {
             name="type"
             value={formData.type}
             onChange={handleChange}
+            onFocus={(e) => e.target.value = ""}
           >
             <option>Выживший</option>
             <option>Ремесленник</option>
@@ -196,6 +200,7 @@ function AddCharPage() {
                     onChange={(e) =>
                       handlePointChange(category, index, Number(e.target.value))
                     }
+                    onFocus={(e) => e.target.value = ""}
                     min="0"
                     max="6"
                   />

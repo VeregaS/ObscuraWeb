@@ -36,15 +36,4 @@ async def add_character(data, db):
         return {"message": f"success {data}"}
     except Exception as e:
         return {"message": f"unluck: {data} {e}"}
-
-
-async def connect_to_db():
-    DATABASE_URL = config.DSN_LINK.get_secret_value()
-    db = Database(DATABASE_URL)
-    await db.connect()
-    return db
-
-
-async def disconnect_db(db):
-    await db.disconnect()
     

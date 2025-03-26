@@ -1,12 +1,21 @@
 import uvicorn
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from functions import show_characters, connect_to_db, disconnect_db, add_character, \
+from contextlib import asynccontextmanager
+from functions import show_characters, add_character, \
     get_character, edit_character, get_character_reputation
 from config_reader import config
 from database import Database
 
-app = FastAPI()
+DATABASE_URL = config.DSN_LINK.get_secret_value()
+db = Database(DATABASE_URL)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await db.connect()
+    yield
+    await db.disconnect()
+
+app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], \
@@ -15,21 +24,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 HOST = config.HOST.get_secret_value()
-DATABASE_URL = config.DSN_LINK.get_secret_value()
-db = Database(DATABASE_URL)
-
-
-@app.on_event("startup")
-async def startup():
-    await db.connect()
-    
-@app.on_event("shutdown")
-async def shutdown():
-    await db.disconnect()
     
 def get_db():
     return db
-
 
 @app.get("/api/show_characters")
 async def call_show_characters(db: Database = Depends(get_db)):
@@ -70,7 +67,6 @@ async def call_edit_character(data: dict, db: Database = Depends(get_db)):
     
     send_data = [id, hp, money, special, attributes, inventory]
     return await edit_character(send_data, db)
-
 
 
 @app.get("/api/test")

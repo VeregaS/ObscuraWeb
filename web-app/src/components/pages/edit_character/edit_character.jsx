@@ -59,8 +59,11 @@ function EditCharacterPage() {
   }, [character]);
 
   const handleHpChange = (e) => {
-    setData((prev) => ({ ...prev, hp: e.target.value }));
+    const maxHp = getPoints("Стойкость") * 10 + 5;
+    const newHp = Math.min(Number(e.target.value), maxHp);
+    setData((prev) => ({ ...prev, hp: newHp }));
   };
+  
 
   const handleMoneyChange = (e) => {
     setData((prev) => ({ ...prev, money: e.target.value }));
@@ -132,9 +135,11 @@ function EditCharacterPage() {
                 className={styles.edit_hp}
                 value={data_save.hp}
                 onChange={handleHpChange}
+                onFocus={(e) => e.target.value = ""}
               />
               из {getPoints("Стойкость") * 10 + 5}
             </h1>
+            <h1 className={styles.stats}>Что-то особое</h1>
             <h1 className={styles.stats}>
               <input
                 type="number"
@@ -142,6 +147,7 @@ function EditCharacterPage() {
                 className={styles.edit_money}
                 value={data_save.money}
                 onChange={handleMoneyChange}
+                onFocus={(e) => e.target.value = ""}
               /> частиц
             </h1>
           </div>
