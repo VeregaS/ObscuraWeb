@@ -113,6 +113,7 @@ function AddCharPage() {
         `http://${apiUrl}:8000/api/add_character`,
         characterData
       );
+      console.log(response);
       routeChange();
     } catch (error) {
     }

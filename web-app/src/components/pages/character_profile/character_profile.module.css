@@ -80,8 +80,8 @@
     max-width: 140px;
     min-height: 80px;
     max-height: 140px;
-    background-color: gray;
     margin-right: 7%;
+    background-image: url("web-app/src/img/timeless.jpg");
 }
 
 .main_stats {

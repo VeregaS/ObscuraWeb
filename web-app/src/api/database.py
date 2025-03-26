@@ -20,8 +20,7 @@ class Database:
     async def add_character(self, name: str, class_: str, family: str, type: str, attributes: list, hp: int):
         async with self.pool.acquire() as conn:
             await conn.execute(
-                "INSERT INTO characters (name, class, family, type, attributes, hp) \
-                VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING",
+                "INSERT INTO characters (name, class, family, type, attributes, hp) VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING",
                 name, class_, family, type, attributes, hp
             )
 

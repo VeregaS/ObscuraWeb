@@ -1,4 +1,5 @@
 import React from "react";
+import photo from "web-app/src/img/timeless.jpg";
 import { useEffect, useState } from "react";
 import { FiChevronLeft, FiEdit } from "react-icons/fi";
 import { useNavigate, useParams, Link } from "react-router-dom";
@@ -86,7 +87,7 @@ function CharacterPage() {
           
 
           <div className={styles.up_part}>
-              <div className={styles.photo}></div>
+              <img src={photo} alt="profile" className={styles.photo}/>
               <div className={styles.main_stats}>
                   <h1 className={styles.stats}>{character['name']}</h1>
                   <h1 className={styles.stats}>HP: {character['hp']} из {getPoints("Стойкость") * 10 + 5}</h1>

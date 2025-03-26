@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import photo from "web-app/src/img/timeless.jpg";
 import axios from "axios";
 import { FiChevronLeft, FiEdit } from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
@@ -114,7 +115,7 @@ function EditCharacterPage() {
       </div>
 
       <div className={styles.up_part}>
-        <div className={styles.photo}></div>
+        <img src={photo} alt="profile" className={styles.photo}/>
         <div className={styles.main_stats}>
           <h1 className={styles.stats}>{character.name}</h1>
           <h1 className={styles.stats}>
