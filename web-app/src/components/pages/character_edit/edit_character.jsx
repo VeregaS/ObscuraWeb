@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import photo from "web-app/src/img/timeless.jpg";
 import axios from "axios";
 import { FiChevronLeft, FiEdit } from "react-icons/fi";
@@ -79,27 +79,40 @@ function EditCharacterPage() {
     );
   };
 
-  const getPoints = (skillName) => {
-    const skill = attributes.find(s => s.skill === skillName);
-    return skill ? skill.points : null;
-  };
+  const getPoints = useCallback((skillName) => {
+    const skill = attributes.find((s) => s.skill === skillName);
+    return skill ? skill.points : 0;
+  }, [attributes]);
+
+  useEffect(() => {
+    if (character) {
+      const maxHp = getPoints("Стойкость") * 10 + 5;
+      setData((prev) => ({
+        ...prev,
+        hp: Math.min(prev.hp, maxHp),
+      }));
+    }
+  }, [attributes, character, getPoints]);
 
   const handleSave = async () => {
+    const maxHp = getPoints("Стойкость") * 10 + 5;
+    const updatedHp = Math.min(data_save.hp, maxHp);
+  
     const characterData = {
       id: data_save.id,
-      hp: data_save.hp,
+      hp: updatedHp,
       money: data_save.money,
       special: data_save.special,
       attributes: JSON.stringify(attributes),
       inventory: data_save.inventory,
     };
-
+  
     try {
       const response = await axios.post(`http://${apiUrl}:8000/api/edit_character`, characterData);
       console.log("Успешно отправлено:", response.data);
       navigate(`/character/${encodeURIComponent(id)}`);
     } catch (error) {
-      setError(error)
+      setError(error);
       console.error("Ошибка:", error);
     }
   };

@@ -71,6 +71,7 @@ class Database:
                 name, hp, inventory
             )
     
+    
     async def edit_character(self, data: list):
         id, hp, money, special, attributes, inventory = data
         async with self.pool.acquire() as conn:
@@ -79,7 +80,25 @@ class Database:
                 id, int(hp), int(money), str(special), attributes, inventory
             )
 
+
     async def get_character_reputation(self, id: str) -> Optional[dict]:
         async with self.pool.acquire() as conn:
             return await conn.fetchrow("SELECT * FROM factions WHERE char_id = $1", id)
+    
+    
+    async def edit_character_reputation(self, data: list):
+        char_id, fr1, fr2, fr3, fr4, fr5 = data
+        async with self.pool.acquire() as conn:
+            await conn.execute(
+                '''
+                UPDATE factions 
+                SET "Союз Забвения" = $2, 
+                    "Доминион Иллюзий" = $3, 
+                    "Кланы Завершения" = $4, 
+                    "Острова Тишины" = $5, 
+                    "Конфедерация Света" = $6 
+                WHERE char_id = $1
+                ''',
+                str(char_id), int(fr1), int(fr2), int(fr3), int(fr4), int(fr5)
+            )
     

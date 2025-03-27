@@ -3,9 +3,11 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from functions import show_characters, add_character, \
-    get_character, edit_character, get_character_reputation
+        get_character, edit_character, get_character_reputation, \
+        edit_character_reputation
 from config_reader import config
 from database import Database
+
 
 DATABASE_URL = config.DSN_LINK.get_secret_value()
 db = Database(DATABASE_URL)
@@ -67,6 +69,19 @@ async def call_edit_character(data: dict, db: Database = Depends(get_db)):
     
     send_data = [id, hp, money, special, attributes, inventory]
     return await edit_character(send_data, db)
+
+
+@app.post('/api/edit_character_reputation')
+async def call_edit_character_reputation(data: dict, db: Database = Depends(get_db)):
+    char_id = data['char_id']
+    fr1 = data['Союз Забвения']
+    fr2 = data['Доминион Иллюзий']
+    fr3 = data['Кланы Завершения']
+    fr4 = data['Острова Тишины']
+    fr5 = data['Конфедерация Света']
+    
+    send_data = [char_id, fr1, fr2, fr3, fr4, fr5]
+    return await edit_character_reputation(send_data, db)
 
 
 @app.get("/api/test")

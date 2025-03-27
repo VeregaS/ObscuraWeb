@@ -40,6 +40,12 @@
 .character {
     display: flex;
     text-decoration: none;
+    font-family: montserrat;
+    color: var(--dark-main);
+    font-weight: 600;
+    background-color: #1b496500;
+    gap: 2vw;
+    border: 0px;
 }
 
 .character:visited, .character:hover, 
@@ -72,17 +78,6 @@
     color: var(--dark-main);
 }
 
-.fraction {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-bottom: 3vh;
-    font-family: montserrat;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--dark-main);
-}
-
 .reputation_container {
     margin-top: 1vh;
     margin-bottom: 2vh;
@@ -91,8 +86,7 @@
 }
 
 .reputation_bar {
-    position: relative;
-    width: 100%;
+    width: calc(100% - 60px);
     height: 10px;
     background-color: #ccc;
     border-radius: 5px;
@@ -102,6 +96,7 @@
     height: 100%;
     transition: width 0.3s ease-in-out;
     border-radius: 5px;
+
 }
 
 .rep_marker {
@@ -112,6 +107,8 @@
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.575);
     border-radius: 3px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .rep_hate { background-color: #6B2737; color: #6B2737; } 
@@ -131,9 +128,31 @@
 
 .reputation_controls {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    gap: 3vw;
     align-items: center;
-    flex-wrap: nowrap;
+    position: relative;
+    width: 100%;
+}
+
+.edit_button {
+    width: 24px; /* Увеличил размер */
+    height: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-main);
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+}
+
+.edit_button:first-child {
+    left: 0;
+}
+
+.edit_button:last-child {
+    right: 0;
 }

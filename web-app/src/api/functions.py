@@ -1,6 +1,4 @@
 import json
-from config_reader import config
-from database import Database
 
 
 async def show_characters(db):
@@ -24,8 +22,14 @@ async def get_character_reputation(id, db):
 
 
 async def edit_character(data, db):
-    character = await db.edit_character(data)
-    return {"message": character}
+    ans = await db.edit_character(data)
+    return {"message": ans}
+
+
+async def edit_character_reputation(data, db):
+    print(data)
+    ans = await db.edit_character_reputation(data)
+    return {"message": ans}
 
 
 async def add_character(data, db):

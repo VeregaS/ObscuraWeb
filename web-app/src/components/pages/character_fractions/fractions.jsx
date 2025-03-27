@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import { FiEdit } from "react-icons/fi";
 import styles from "./fractions.module.css";
 
 function FractionsPage() {
@@ -71,6 +72,14 @@ function FractionsPage() {
   else {
     return (
       <div className={styles.container}>
+         <div className={styles.header}>
+            <div className={styles.edit}>
+              <Link to={`/edit_fractions/${encodeURIComponent(id)}`} className={styles.character}>
+                <p className={styles.edit_text}>Редактировать</p>
+                <FiEdit className={styles.edit_icon} />
+              </Link>
+            </div>
+          </div>
         <div className={styles.fractions}>
           <p className={styles.title}>Отношения с фракциями</p>
           {Object.entries(info).map(([key, value]) => {
@@ -78,7 +87,9 @@ function FractionsPage() {
               return (
                 <div key={key} className={styles.fraction}>
                   <p>{key}</p>
-                  <ReputationBar key={key} faction={key} reputation={value} />
+                  <div className={styles.reputation_controls}>
+                    <ReputationBar key={key} faction={key} reputation={value}/>
+                  </div>
                 </div>
               );
             }
