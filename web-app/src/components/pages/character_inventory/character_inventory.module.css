@@ -1,0 +1,65 @@
+.container {
+    user-select: none;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 2vh;
+    margin-left: 7vw;
+    margin-right: 7vw;
+    width: auto;
+    max-width: 380px;
+    margin-bottom: 80px;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5vh;
+}
+
+.edit_text {
+    font-family: montserrat;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-main);
+    margin-right: 2vw;
+}
+
+.edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_icon {
+    color: var(--dark-main);
+    stroke-width: 2.5px;
+}
+
+.character {
+    display: flex;
+    text-decoration: none;
+}
+
+.character:visited, .character:hover, 
+.character:active, .character:link {
+    color: var(--dark-main);
+}
+
+.title {
+    font-family: montserrat;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--dark-main);
+    text-align: center;
+    margin-bottom: 3vh;
+}
+
+.inventory {
+    font-family: montserrat;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-main);
+}
+
