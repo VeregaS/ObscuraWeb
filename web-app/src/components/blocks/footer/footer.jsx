@@ -8,7 +8,7 @@ function Footer() {
   const match = location.pathname.match(
     /\/character\/([^/]+)|\/fractions\/([^/]+)|\/inventory\/([^/]+)|\/edit_character\/([^/]+)|\/edit_fractions\/([^/]+)/
   );
-  const id = match ? match[1] || match[2] || match[3] || match[4] || match[5]: null;
+  const id = match ? match[1] || match[2] || match[3] || match[4] || match[5] : null;
 
   return (
     <footer>

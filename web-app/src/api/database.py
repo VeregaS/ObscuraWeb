@@ -73,11 +73,11 @@ class Database:
     
     
     async def edit_character(self, data: list):
-        id, hp, money, special, attributes, inventory = data
+        id, hp, money, special, attributes = data
         async with self.pool.acquire() as conn:
             await conn.execute(
-                "UPDATE characters SET (hp, money, special, attributes, inventory) = ($2, $3, $4, $5, $6) WHERE formatted_id = $1",
-                id, int(hp), int(money), str(special), attributes, inventory
+                "UPDATE characters SET (hp, money, special, attributes) = ($2, $3, $4, $5) WHERE formatted_id = $1",
+                id, int(hp), int(money), str(special), attributes
             )
 
 
@@ -102,3 +102,16 @@ class Database:
                 str(char_id), int(fr1), int(fr2), int(fr3), int(fr4), int(fr5)
             )
     
+        
+    async def get_character_items(self, id: str) -> dict:
+        async with self.pool.acquire() as conn:
+            items = await conn.fetchrow("SELECT * FROM character_items WHERE character_id = $1", id)
+            return items if items else {}
+        
+            
+    # INSERT INTO character_items (character_id, item_id, quantity) 
+    # VALUES ('#000001', 5, 2); -- Добавили 2 штуки предмета с id=5 персонажу #000001
+    
+    # SELECT i.* FROM items i
+    # JOIN character_items ci ON i.id = ci.item_id
+    # WHERE ci.character_id = '#000001';

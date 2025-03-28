@@ -16,7 +16,6 @@ function EditCharacterPage() {
     hp: 0,
     money: 0,
     special: "",
-    inventory: "Пока пусто",
   });
 
   let navigate = useNavigate();
@@ -104,7 +103,6 @@ function EditCharacterPage() {
       money: data_save.money,
       special: data_save.special,
       attributes: JSON.stringify(attributes),
-      inventory: data_save.inventory,
     };
   
     try {

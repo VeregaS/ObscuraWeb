@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from functions import show_characters, add_character, \
         get_character, edit_character, get_character_reputation, \
-        edit_character_reputation
+        edit_character_reputation, show_character_items
 from config_reader import config
 from database import Database
 
@@ -65,9 +65,8 @@ async def call_edit_character(data: dict, db: Database = Depends(get_db)):
     money = data['money']
     special = data['special']
     attributes = data['attributes']
-    inventory = data['inventory']
     
-    send_data = [id, hp, money, special, attributes, inventory]
+    send_data = [id, hp, money, special, attributes]
     return await edit_character(send_data, db)
 
 
@@ -82,6 +81,11 @@ async def call_edit_character_reputation(data: dict, db: Database = Depends(get_
     
     send_data = [char_id, fr1, fr2, fr3, fr4, fr5]
     return await edit_character_reputation(send_data, db)
+
+
+@app.get("/api/show_character_items/{id}")
+async def call_show_character_items(id: str, db: Database = Depends(get_db)):
+    return await show_character_items(id, db)
 
 
 @app.get("/api/test")

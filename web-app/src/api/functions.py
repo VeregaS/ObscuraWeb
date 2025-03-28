@@ -41,3 +41,20 @@ async def add_character(data, db):
     except Exception as e:
         return {"message": f"unluck: {data} {e}"}
     
+    
+async def show_character_items(id, db):
+    items = await db.get_character_items(id)
+    
+    if not items or "item_id" not in items or len(items["item_id"]) == 0:
+        return {"message": "Пока пусто"}
+    else:
+        return {"message": items}
+    
+
+async def show_character_items(id, db):
+    items = await db.get_character_items(id)
+    
+    if not items or "item_id" not in items or len(items["item_id"]) == 0:
+        return {"message": "Пока пусто"}
+    else:
+        return {"message": items}

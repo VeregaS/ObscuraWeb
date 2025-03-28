@@ -15,7 +15,7 @@ function CharacterInventory() {
   
 
   useEffect(() => {
-        fetch(`http://${apiUrl}:8000/api/get_character/${encodeURIComponent(id)}`)
+        fetch(`http://${apiUrl}:8000/api/show_character_items/${encodeURIComponent(id)}`)
           .then((res) => res.json())
           .then((data) => {
             setLoading(false);
@@ -37,17 +37,9 @@ function CharacterInventory() {
   else {
     return (
       <div className={styles.container}>
-          <div className={styles.header}>
-            <div className={styles.edit}>
-              <Link to={`/edit_fractions/${encodeURIComponent(id)}`} className={styles.character}>
-                <p className={styles.edit_text}>Редактировать</p>
-                <FiEdit className={styles.edit_icon} />
-              </Link>
-            </div>
-          </div>
         <p className={styles.title}>Инвентарь</p>
         <div className={styles.inventory}>
-          <p>{character['inventory']}</p>
+          <p>{character}</p>
         </div>
       </div>
     );
