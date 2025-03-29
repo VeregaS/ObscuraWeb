@@ -105,12 +105,21 @@ class Database:
         
     async def get_character_items(self, id: str) -> dict:
         async with self.pool.acquire() as conn:
-            items = await conn.fetchrow("SELECT * FROM character_items WHERE character_id = $1", id)
-            return items if items else {}
+            items = await conn.fetch(
+                '''
+                SELECT i.* 
+                FROM items i
+                JOIN character_items ci ON i.id = ANY(ci.item_id)
+                WHERE ci.character_id = $1;
+                ''', id
+            )  
+            return [dict(item) for item in items]
         
             
-    # INSERT INTO character_items (character_id, item_id, quantity) 
-    # VALUES ('#000001', 5, 2); -- Добавили 2 штуки предмета с id=5 персонажу #000001
+    # UPDATE character_items
+    # SET item_id = item_id || ARRAY[3], 
+    #     quantity = quantity || ARRAY[1]
+    # WHERE character_id = '#0032';
     
     # SELECT i.* FROM items i
     # JOIN character_items ci ON i.id = ci.item_id
